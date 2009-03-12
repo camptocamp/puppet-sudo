@@ -1,0 +1,24 @@
+# commands nagios user has to access
+Cmnd_Alias  CHECK_AFARAID = /usr/local/bin/check_afaraid.pl
+Cmnd_Alias  CHECK_MEGARC = /usr/local/bin/check_megarc.pl
+Cmnd_Alias  CHECK_IPMI = /usr/local/bin/check_ipmi.pl
+Cmnd_Alias  CHECK_ISDN = /usr/local/bin/check_isdn
+
+Cmnd_Alias  CHECK_DMI = /usr/sbin/dmidecode
+Cmnd_Alias  CHECK_RAID = /usr/lib/nagios/plugins/contrib/check_raid/check_raid
+Cmnd_Alias  CHECK_UBC = /usr/lib/nagios/plugins/contrib/check_ubc.pl
+Cmnd_Alias  CHECK_MD = /usr/lib/nagios/plugins/contrib/check_raid/check_md_raid
+Cmnd_Alias  CHECK_LSI_MEGA = /usr/lib/nagios/plugins/contrib/check_raid/check_lsi_megaraid
+Cmnd_Alias  CHECK_MEGASAS = /usr/lib/nagios/plugins/contrib/check_raid/check_megaraid_sas
+Cmnd_Alias  CHECK_FUSION = /usr/lib/nagios/plugins/contrib/check_raid/check_fusion_mpt
+Cmnd_Alias  CHECK_ARRAYPROBE = /usr/bin/arrayprobe
+
+Cmnd_Alias  CHECKNRPE = CHECK_DMI, CHECK_RAID, CHECK_UBC, CHECK_MD, CHECK_LSI_MEGA, CHECK_MEGASAS, CHECK_FUSION, CHECK_ISDN, CHECK_IPMI, CHECK_MEGARC, CHECK_AFARAID, CHECK_ARRAYPROBE
+
+# nagios user
+User_Alias  NAGIOS = nagios
+
+# allow nagios user
+NAGIOS  <%=hostname%>=(root) NOPASSWD:CHECKNRPE
+# prevents "sudo error" as root
+root    <%=hostname%>=(ALL) ALL
