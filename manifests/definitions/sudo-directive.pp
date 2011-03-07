@@ -10,6 +10,7 @@ define sudo::directive (
 
     common::concatfilepart {$name:
       ensure => $ensure,
+      manage => true,
       file => "/etc/sudoers",
       content => $content ? {
         ""      => undef,
