@@ -38,13 +38,13 @@ define sudo::directive (
         ""      => undef,  
         default => $source,
       },
-      notify  => Exec["sudo-syntax-check"],
+      notify  => Exec["sudo-syntax-check for file $name"],
       require => Package["sudo"],
     }
   
   }
 
-  exec {"sudo-syntax-check":
+  exec {"sudo-syntax-check for file $name":
     command     => "visudo -c -f /etc/sudoers.d/${name} || ( rm -f /etc/sudoers.d/${name} && exit 1)",
     refreshonly => true,
   }
