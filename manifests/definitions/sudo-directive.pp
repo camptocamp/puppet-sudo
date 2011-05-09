@@ -48,6 +48,7 @@ define sudo::directive (
   }
 
   exec {"sudo-syntax-check for file $dname":
+    path => "/bin:/sbin:/usr/bin:/usr/sbin",
     command     => "visudo -c -f /etc/sudoers.d/${dname} || ( rm -f /etc/sudoers.d/${dname} && exit 1)",
     refreshonly => true,
   }
