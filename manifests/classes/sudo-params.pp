@@ -9,6 +9,9 @@ class sudo::params {
       lenny   => '1.6.9',
       squeeze => '1.7.4',
     },
+    Ubuntu => $lsbdistcodename ? {
+      lucid => '1.7.4p4-3',
+    },
     CentOS => $lsbdistrelease ? {
       5.5 => '1.7.2',
     },
