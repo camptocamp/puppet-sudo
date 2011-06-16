@@ -12,8 +12,8 @@ class sudo::params {
     Ubuntu => $lsbdistcodename ? {
       lucid => '1.7.4p4-3',
     },
-    CentOS => $lsbdistrelease ? {
-      5.5 => '1.7.2',
+    CentOS => $lsbmajdistrelease ? {
+      5 => '1.7.2',
     },
   }
 
