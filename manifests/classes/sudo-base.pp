@@ -1,9 +1,6 @@
 class sudo::base {
-
-  include sudo::params
-
   package {"sudo":
-    ensure => $sudo::params::version,
+    ensure => "present",
   }
 
   file {"/etc/sudoers":
@@ -13,7 +10,7 @@ class sudo::base {
     mode   => 440,
   }
 
-  if versioncmp($sudo::params::majversion,'1.7.2') < 0 {
+  if versioncmp($sudoversion,'1.7.2') < 0 {
     #
     # Backward compatibility for version less than 1.7.2
     # 
