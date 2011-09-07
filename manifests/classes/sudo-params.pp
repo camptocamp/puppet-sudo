@@ -14,6 +14,7 @@ class sudo::params {
     },
     CentOS => $lsbmajdistrelease ? {
       5 => '1.7.2',
+      6 => '1.7.2p2',
     },
   }
 
