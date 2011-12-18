@@ -18,12 +18,12 @@ class sudo::params {
     },
   }
 
-  if !$sudo_version { 
+  if !$::sudo_version { 
     $version = "present" 
     $majversion = $release_version
   } else {
-    $majversion = $sudo_version
-    $version = $sudo_version
+    $majversion = $::sudo_version
+    $version = $::sudo_version
   }
 
 }
