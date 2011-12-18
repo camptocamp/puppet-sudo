@@ -1,6 +1,6 @@
 class sudo::params {
 
-  $release_version = $operatingsystem ? {
+  $release_version = $::operatingsystem ? {
     RedHat => $::lsbdistcodename ? {
       /^Nahant.*/        => '1.6.7',
       /Tikanga|Santiago/ => '1.7.2',
@@ -12,7 +12,7 @@ class sudo::params {
     Ubuntu => $::lsbdistcodename ? {
       lucid => '1.7.4p4-3',
     },
-    CentOS => $lsbmajdistrelease ? {
+    CentOS => $::lsbmajdistrelease ? {
       5 => '1.7.2',
       6 => '1.7.2p2',
     },
