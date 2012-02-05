@@ -1,5 +1,5 @@
 class sudo {
-  case $operatingsystem {
+  case $::operatingsystem {
     default: { include sudo::base }
   }
 }

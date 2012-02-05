@@ -1,0 +1,26 @@
+{
+  "name": "tribily-sudo",
+  "author": "",
+  "description": "",
+  "license": "",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "version": "1.0",
+  "checksums": {
+    "Modulefile": "e998376aa947656f38dabc83988b74f7",
+    "README.rst": "a063bfacad431f0c4a115e98df7a0d4e",
+    "lib/facter/sudo.rb": "9b1381a6f5cb47bc8bc1d2c488a758b6",
+    "manifests/base.pp": "01df2f188a6ed9b4c41659b6fcd3121e",
+    "manifests/directive.pp": "cad32c475a5a6e6efbbeb471d2e5f9a7",
+    "manifests/init.pp": "e8d4e7fde69d0f95e8f34c84af69abc7",
+    "manifests/params.pp": "122a96248279b9df48f742b226a8d769",
+    "templates/sudoers.erb": "e496a5b4a10066af80fd70a6394bb72a"
+  },
+  "dependencies": [
+    {
+      "name": "tribily/common",
+      "versionRequirement": "\u003e\u003d1.0"
+    }
+  ]
+}
