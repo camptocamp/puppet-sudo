@@ -7,7 +7,7 @@ define sudo::directive (
   # sudo skipping file names that contain a "."
   $dname = regsubst($name, '\.', '-', 'G')
 
-  if versioncmp($sudoversion,'1.7.2') < 0 {
+  if versioncmp($::sudoversion,'1.7.2') < 0 {
 
     common::concatfilepart {$dname:
       ensure => $ensure,

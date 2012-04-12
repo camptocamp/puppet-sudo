@@ -10,7 +10,7 @@ class sudo::base {
     mode   => 440,
   }
 
-  if versioncmp($sudoversion,'1.7.2') < 0 {
+  if versioncmp($::sudoversion,'1.7.2') < 0 {
     #
     # Backward compatibility for version less than 1.7.2
     # 
