@@ -29,6 +29,7 @@ class sudo::base {
       ensure  => absent,
       purge   => true,
       recurse => true,
+      force   => true,
     }
 
   } else {
