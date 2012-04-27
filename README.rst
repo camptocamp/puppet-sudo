@@ -3,7 +3,7 @@ Sudo Puppet module
 ==================
 
 Since the version 1.7.2 a new `#includedir` directive is available in sudoers.                                                                                
-To keep backward compatibility with old sudo versions the `common::concatfilepart` definition is used. 
+To keep backward compatibility with old sudo versions the `concat module <https://github.com/camptocamp/puppet-concat>`_ is used. 
 
 The definition `sudo::directive` provides a simple way to write sudo configurations parts. If you use a sudo version >= 1.7.2, the sudo directive part is validated via visudo and removed if syntax is not correct.
 
@@ -41,4 +41,3 @@ This module is provided to you by Camptocamp_.
 
 For more information about sudo see http://www.gratisoft.us/sudo/
 
-Depends on the `common` module available here: https://github.com/camptocamp/puppet-common

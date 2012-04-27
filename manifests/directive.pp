@@ -1,7 +1,7 @@
 define sudo::directive (
   $ensure=present,
-  $content="",
-  $source=""
+  $content='',
+  $source=''
 ) {
 
   # sudo skipping file names that contain a "."
@@ -9,43 +9,41 @@ define sudo::directive (
 
   if versioncmp($::sudoversion,'1.7.2') < 0 {
 
-    common::concatfilepart {$dname:
+    concat::fragment {$dname:
       ensure => $ensure,
-      manage => true,
-      file => "/etc/sudoers",
+      target => '/etc/sudoers',
       content => $content ? {
-        ""      => undef,
+        ''      => undef,
         default => $content,
       },
       source => $source ? {
-        ""      => undef,
+        ''      => undef,
         default => $source,
       },
-      require => Package["sudo"],
     }
-  
+
   } else {
 
     file {"/etc/sudoers.d/${dname}":
       ensure  => $ensure,
       owner   => root,
       group   => root,
-      mode    => 0440,
+      mode    => '0440',
       content => $content ? {
-        ""      => undef,   
+        ''      => undef,
         default => $content,
       },
       source  => $source ? {
-        ""      => undef,  
+        ''      => undef,
         default => $source,
       },
-      notify  => Exec["sudo-syntax-check for file $dname"],
-      require => Package["sudo"],
+      notify  => Exec["sudo-syntax-check for file ${dname}"],
+      require => Package['sudo'],
     }
-  
+
   }
 
-  exec {"sudo-syntax-check for file $dname":
+  exec {"sudo-syntax-check for file ${dname}":
     command     => "visudo -c -f /etc/sudoers.d/${dname} || ( rm -f /etc/sudoers.d/${dname} && exit 1)",
     refreshonly => true,
   }
