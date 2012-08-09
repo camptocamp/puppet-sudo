@@ -1,13 +1,10 @@
-Facter.add("sudoversion") do
-  ENV["PATH"]="/bin:/sbin:/usr/bin:/usr/sbin"
+output = %x{sudo -V 2>&1}
 
-  setcode do
-    output = `sudo -V 2>&1`
-    if $?.exitstatus.zero?
-      m = /Sudo version ([\d\.]+)/.match output
-      if m
-        m[1]
-      end
+if $?.exitstatus and output.match(/Sudo version ([\d\.]+)/)
+
+  Facter.add("sudoversion") do
+    setcode do
+      $1
     end
   end
 end
