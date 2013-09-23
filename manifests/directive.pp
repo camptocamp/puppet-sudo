@@ -31,7 +31,7 @@ define sudo::directive (
 
   } else {
 
-    fail 'sudo fragments via #includedir is only available since version 1.7.2!'
+    fail "sudo fragments via #includedir is only available since version 1.7.2 in Sudo[${name}]!"
 
   }
 
