@@ -2,8 +2,8 @@
 Defaults    env_keep=SSH_AUTH_SOCK
 Defaults    !authenticate
 Defaults    env_reset
-<% if has_variable?("sudo_mailto") -%>
-Defaults    mailto=<%= sudo_mailto %>
+<% if @sudo_mailto -%>
+Defaults    mailto=<%= @sudo_mailto %>
 <% end -%>
 Defaults    always_set_home
 Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
