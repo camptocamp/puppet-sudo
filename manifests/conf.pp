@@ -45,6 +45,7 @@ define sudo::conf(
   }
 
   exec {"sudo-syntax-check for file ${dname}":
+    path        => $::path,
     command     => "visudo -c -f '/etc/sudoers.d/${dname}' || ( rm -f '/etc/sudoers.d/${dname}' && exit 1)",
     refreshonly => true,
   }
