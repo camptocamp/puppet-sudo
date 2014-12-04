@@ -35,7 +35,7 @@ class sudo (
     } else {
       augeas { 'includedirsudoers':
         changes => ['set /files/etc/sudoers/#includedir /etc/sudoers.d'],
-        incl    => $config_file,
+        incl    => '/etc/sudoers',
         lens    => 'FixedSudoers.lns',
       }
     }
