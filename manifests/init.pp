@@ -1,4 +1,8 @@
-class sudo {
+class sudo (
+  $config_file_replace = true,
+) {
+
+  validate_bool($config_file_replace)
 
   package {'sudo':
     ensure => 'present',
@@ -26,7 +30,15 @@ class sudo {
       force   => true,
     }
 
-    File ['/etc/sudoers'] { content => template('sudo/sudoers.erb'), }
+    if $config_file_replace {
+      File ['/etc/sudoers'] { content => template('sudo/sudoers.erb'), }
+    } else {
+      augeas { 'includedirsudoers':
+        changes => ['set /files/etc/sudoers/#includedir /etc/sudoers.d'],
+        incl    => $config_file,
+        lens    => 'FixedSudoers.lns',
+      }
+    }
 
   }
 
