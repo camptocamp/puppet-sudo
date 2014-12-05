@@ -31,7 +31,7 @@ class sudo (
     }
 
     if $config_file_replace {
-      File ['/etc/sudoers'] { content => template('sudo/sudoers.erb'), }
+      File['/etc/sudoers'] { content => template('sudo/sudoers.erb'), }
     } else {
       augeas { 'includedirsudoers':
         changes => ['set /files/etc/sudoers/#includedir /etc/sudoers.d'],
