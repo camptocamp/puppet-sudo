@@ -1,5 +1,4 @@
-ENV['LANG'] = 'C'
-output = %x{sudo -V 2>&1}
+output = Facter::Util::Resolution.exec("sudo -V 2>&1")
 
 if $?.exitstatus and output.match(/[Ss]udo[ \-][Vv]ersion ([\d\.]+)/)
 
