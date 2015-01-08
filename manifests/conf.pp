@@ -31,7 +31,7 @@ define sudo::conf(
         ''      => undef,
         default => $source,
       },
-      notify => $ensure ? {
+      notify  => $ensure ? {
         'present' => Exec["sudo-syntax-check for file ${dname}"],
         default   => undef,
       },
