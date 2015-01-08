@@ -16,6 +16,8 @@ define sudo::conf(
   $tname = regsubst($name, '\.', '-', 'G')
   $dname = "${priority}_${tname}"
 
+  include ::sudo
+
   if versioncmp($::sudoversion,'1.7.2') >= 0 {
 
     $notify = $ensure ? {
