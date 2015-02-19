@@ -9,7 +9,7 @@ class sudo (
   }
 
   file {'/etc/sudoers':
-    ensure => present,
+    ensure => file,
     owner  => root,
     group  => root,
     mode   => '0440',
