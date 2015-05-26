@@ -1,6 +1,6 @@
 {
   "name": "camptocamp-sudo",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Camptocamp",
   "summary": "Puppet Sudo module",
   "license": "Apache-2.0",
