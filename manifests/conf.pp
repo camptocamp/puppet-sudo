@@ -18,28 +18,20 @@ define sudo::conf(
 
   include ::sudo
 
-  if versioncmp($::sudoversion,'1.7.2') >= 0 {
+  $notify = $ensure ? {
+    'present' => Exec["sudo-syntax-check for file ${dname}"],
+    default   => undef,
+  }
 
-    $notify = $ensure ? {
-      'present' => Exec["sudo-syntax-check for file ${dname}"],
-      default   => undef,
-    }
-
-    file {"/etc/sudoers.d/${dname}":
-      ensure  => $ensure,
-      owner   => root,
-      group   => root,
-      mode    => '0440',
-      content => $content,
-      source  => $source,
-      notify  => $notify,
-      require => Package['sudo'],
-    }
-
-  } else {
-
-    fail "sudo fragments via #includedir is only available since version 1.7.2 in Sudo[${name}]!"
-
+  file {"/etc/sudoers.d/${dname}":
+    ensure  => $ensure,
+    owner   => root,
+    group   => root,
+    mode    => '0440',
+    content => $content,
+    source  => $source,
+    notify  => $notify,
+    require => Package['sudo'],
   }
 
   exec {"sudo-syntax-check for file ${dname}":
