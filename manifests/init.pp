@@ -6,15 +6,13 @@ class sudo (
 
   package {'sudo':
     ensure => 'present',
-  }
-
+  } ->
   file {'/etc/sudoers':
     ensure => file,
     owner  => root,
     group  => root,
     mode   => '0440',
-  }
-
+  } ->
   file {'/etc/sudoers.d':
     ensure  => directory,
     owner   => root,
