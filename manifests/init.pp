@@ -1,9 +1,6 @@
 class sudo (
-  $config_file_replace = true,
+  Boolean $config_file_replace = true,
 ) {
-
-  validate_bool($config_file_replace)
-
   package {'sudo':
     ensure => 'present',
   }
