@@ -1,5 +1,6 @@
 class sudo (
-  Boolean $config_file_replace = true,
+  Boolean          $config_file_replace = true,
+  Optional[String] $mailto              = undef,
 ) {
   package {'sudo':
     ensure => 'present',
@@ -21,7 +22,12 @@ class sudo (
   }
 
   if $config_file_replace {
-    File['/etc/sudoers'] { content => template('sudo/sudoers.erb'), }
+    File['/etc/sudoers'] {
+      content => epp(
+        'sudo/sudoers.epp',
+        { mailto => $mailto },
+      ),
+    }
   } else {
     augeas { 'includedirsudoers':
       changes => ['set /files/etc/sudoers/#includedir /etc/sudoers.d'],
